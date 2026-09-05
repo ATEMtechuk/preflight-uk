@@ -8,7 +8,7 @@ All-in-one pre-flight briefing for UK general aviation pilots. Plan a route on a
 
 ## Why I built this
 
-Last month I flew a plane for the first time with Cambridge Gliding Centre and before we flew I realised how many checks had to be done in order to fly, and the information was scattered between different sites, so I thought an aggregation of all the sites into one UI would be really useful, and I also thought that a chatbot built in would make decision making really easy.
+I flew a plane for the first time last month with Cambridge Gliding Centre. What struck me before we even got airborne was the sheer number of checks a flight needs, and how scattered the answers were: weather on one site, NOTAMs on another, airfield information somewhere else entirely. PreFlight UK pulls all of that into one calm, minimal interface, with a built-in co-pilot so the go / no-go decision is easy to talk through.
 
 ## Tour
 
