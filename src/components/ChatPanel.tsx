@@ -96,7 +96,7 @@ export default function ChatPanel({ getContext, briefState }: { getContext: () =
   }
 
   return (
-    <div className="card flex h-full flex-col p-4">
+    <div className="card flex h-full min-h-0 flex-col gap-2 overflow-hidden p-4">
       <div className="mb-1 flex items-center gap-2">
         <Bot size={18} />
         <h2 className="text-sm font-semibold tracking-tight">AI co-pilot</h2>
@@ -129,11 +129,11 @@ export default function ChatPanel({ getContext, briefState }: { getContext: () =
           ))}
         </div>
       </div>
-      <div className="flex max-h-80 min-h-48 flex-col gap-2 overflow-y-auto">
+      <div className="flex min-h-0 flex-1 flex-col gap-2 overflow-y-auto overflow-x-hidden">
         {msgs.map((m, i) => (
           <div
             key={i}
-            className={`max-w-[90%] whitespace-pre-wrap rounded-xl px-3 py-2 text-sm leading-6 ${
+            className={`max-w-[90%] break-words whitespace-pre-wrap rounded-xl px-3 py-2 text-sm leading-6 ${
               m.role === "user" ? "self-end bg-black text-white dark:bg-white dark:text-black" : "self-start bg-black/5 dark:bg-white/10"
             }`}
           >
@@ -147,18 +147,18 @@ export default function ChatPanel({ getContext, briefState }: { getContext: () =
         ))}
         {busy && <div className="text-xs opacity-50">Thinking…</div>}
       </div>
-      <div className="mt-3 flex gap-2">
-        <button onClick={toggleMic} className="rounded-xl border border-black/10 px-3 dark:border-white/15" aria-label="Voice input">
+      <div className="mt-1 flex shrink-0 gap-2">
+        <button onClick={toggleMic} className="shrink-0 rounded-xl border border-black/10 px-3 dark:border-white/15" aria-label="Voice input">
           <Mic size={16} />
         </button>
         <input
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && send()}
-          placeholder="Aircraft, load, fuel, route…"
-          className="w-full rounded-xl border border-black/10 bg-transparent px-3 py-2 text-sm outline-none dark:border-white/15"
+          placeholder="Aircraft, load, fuel, route..."
+          className="w-full min-w-0 rounded-xl border border-black/10 bg-transparent px-3 py-2 text-sm outline-none dark:border-white/15"
         />
-        <button onClick={() => send()} className="rounded-xl bg-black px-3 text-white dark:bg-white dark:text-black" aria-label="Send">
+        <button onClick={() => send()} className="shrink-0 rounded-xl bg-black px-3 text-white dark:bg-white dark:text-black" aria-label="Send">
           <Send size={16} />
         </button>
       </div>

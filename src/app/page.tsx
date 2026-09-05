@@ -46,8 +46,11 @@ export default function Home() {
   const [trafficCount, setTrafficCount] = useState<number | null>(null);
   const [sigmetPolys, setSigmetPolys] = useState<SigmetPoly[]>([]);
   const [checks, setChecks] = useState<boolean[]>(CHECKS.map(() => false));
-  const [chatOpen, setChatOpen] = useState(false);
-  const [panelOpen, setPanelOpen] = useState(true);
+
+  const [chatOpen, setChatOpen] = useState(true);
+  const [panelOpen, setPanelOpen] = useState<boolean>(
+    () => typeof window === "undefined" || window.innerWidth >= 768
+  );
   const [tab, setTab] = useState<"brief" | "wx" | "notam">("brief");
 
   const fromA = findAirfield(from);
@@ -182,7 +185,7 @@ export default function Home() {
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: -320, opacity: 0 }}
             transition={{ type: "spring", stiffness: 300, damping: 32 }}
-            className="absolute bottom-3 left-3 top-16 z-10 flex w-[min(360px,calc(100vw-24px))] flex-col gap-3 overflow-y-auto rounded-2xl border border-black/10 bg-white/90 p-4 shadow-xl backdrop-blur dark:border-white/10 dark:bg-black/85"
+            className="absolute bottom-3 left-3 top-16 z-10 flex w-[min(360px,calc(100vw-24px))] flex-col gap-3 overflow-y-auto rounded-2xl border border-black/10 bg-white/90 p-4 shadow-xl backdrop-blur dark:border-white/10 dark:bg-black/85 max-md:left-3 max-md:right-3 max-md:top-auto max-md:max-h-[52dvh] max-md:w-auto"
           >
             <div className="flex flex-col gap-1.5">
               <label className="flex min-w-0 flex-col gap-1 text-[11px] font-medium">From
@@ -336,7 +339,7 @@ export default function Home() {
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: 320, opacity: 0 }}
             transition={{ type: "spring", stiffness: 300, damping: 32 }}
-            className="absolute bottom-3 right-3 top-16 z-10 w-[min(380px,calc(100vw-24px))]"
+            className="absolute bottom-3 right-3 top-16 z-10 w-[min(380px,calc(100vw-24px))] max-md:left-3 max-md:right-3 max-md:top-auto max-md:h-[52dvh] max-md:w-auto"
           >
             <div className="h-full overflow-hidden rounded-2xl border border-black/10 bg-white/95 shadow-xl backdrop-blur dark:border-white/10 dark:bg-black/90">
               <ChatPanel
@@ -356,7 +359,7 @@ export default function Home() {
       </AnimatePresence>
 
       {fetched && !panelOpen && (
-        <div className={`absolute bottom-4 left-1/2 z-10 flex -translate-x-1/2 items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold shadow-lg ${statusCls}`}>
+        <div className={`absolute bottom-4 left-1/2 z-10 hidden -translate-x-1/2 items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold shadow-lg md:flex ${statusCls}`}>
           <StatusIcon size={16} /> {brief.status} · {routeNm.toFixed(0)} NM · {brief.cat}
         </div>
       )}

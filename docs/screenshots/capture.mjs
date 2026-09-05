@@ -18,7 +18,7 @@ await page.waitForTimeout(5000);
 await page.screenshot({ path: "docs/screenshots/03-traffic.png" });
 
 await page.getByRole("button", { name: "Co-pilot" }).click();
-await page.getByPlaceholder("Aircraft, load, fuel, route…").fill("C172, 2 POB, 100L fuel, EGTK to EGKA");
+await page.getByPlaceholder("Aircraft, load, fuel, route...").fill("C172, 2 POB, 100L fuel, EGTK to EGKA");
 await page.keyboard.press("Enter");
 await page.waitForTimeout(4000);
 await page.screenshot({ path: "docs/screenshots/04-copilot.png" });
